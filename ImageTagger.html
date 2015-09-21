@@ -1,56 +1,69 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Image Tagger</title>
-  <style>
-  	#imagePreview{
-  		height: 860px;
-  		width: 480px;
-  		border-radius: 4px;
-  		border: 2px solid green;
-  		margin-right: auto;
-  		margin-left: auto;
-  	}
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Image Tagger</title>
+     <style>
+     	#imagePreview{
+     		height: 860px;
+     		width: 480px;
+     		border-radius: 4px;
+     		border: 2px dotted #ccc;
+     		margin-right: auto;
+     		margin-left: auto;
+     	}
 
-  	#imageSelectorContainer{
-  		display: block;
-  		margin-top: 10px;
-  		margin-bottom: 10px;
-  		width: 480px;
-  		margin-right: auto;
-  		margin-left: auto;
-  	}
+     	#imageSelectorContainer{
+     		display: block;
+     		margin-top: 10px;
+     		margin-bottom: 10px;
+     		width: 480px;
+     		margin-right: auto;
+     		margin-left: auto;
+     	}
 
-  	img {
-  		width: 100%;
-  		height : 100%;
-  	}
+     	img {
+     		width: 100%;
+     		height : 100%;
+     	}
 
-  	.tagArea{
-  		padding-top: 4px;
-  		padding-bottom: 4px;
-  	}
+     	.tagArea{
+     		padding-top: 4px;
+     		padding-bottom: 4px;
+     	}
 
-  	input[type="submit"]{
-  		display: inline-block;
-  	}
-  </style>
+     	input[type="submit"]{
+     		display: inline-block;
+         background-color: white;
+         border-radius: 4px;
+         border-color: #ccc;
+         padding: 4px;
+         border-width: 1px; 
+         border-style: solid;
+     	}
 
-</head>
-<body>
-  <div id="imagePreview">
-  	<img id="imageToTag"></img>
-  </div>
-  <div id="imageSelectorContainer">
-  	<form>
-  		<input id="imageSelector" type="file" />  		
-  		<div class="tagArea">
-	  		<input type="text" name="tags" placeholder="Tags are separated by a space" size="55" />  		
-	  		<input type="submit" value="Submit">
-  		</div>
-	</form>
-  </div>  
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="preview.js"></script>
-</body>
-</html>
+      input[type="submit"]:hover{
+         color: #333;
+         background-color: #e6e6e6;
+         border-color: #adadad;
+      }
+ 
+     </style>
+
+   </head>
+   <body>
+     <div id="imagePreview">
+     	<img id="imageToTag"></img>
+     </div>
+     <div id="imageSelectorContainer">
+     	<form>
+     		<input id="imageSelector" type="file" />  		
+     		<div class="tagArea">
+   	  		<input type="text" name="tags" placeholder="Tags are separated by a space" size="55" />  		
+   	  		<input type="submit" value="Submit" />
+     		</div>
+   	</form>
+     </div>  
+     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+     <script src="preview.js"></script>
+   </body>
+   </html>
