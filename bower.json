@@ -1,0 +1,26 @@
+{
+  "name": "Pic Tagger, Saver and Server",
+  "version": "0.0.1",
+  "description": "Tag pics from local computer, upload them and serve them back for presentation",
+  "keywords": [
+    "images",
+    "server",
+    "nodejs",
+    "webserver",
+    "html5"
+  ],
+  "authors": [
+    "Dave Cremins"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
