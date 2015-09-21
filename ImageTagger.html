@@ -3,42 +3,31 @@
    <head>
      <title>Image Tagger</title>
      <style>
-     #imagePreviewSurround{
+     .imagePreviewSurround{
          padding: 4px;
          height: 700px;
          width: 420px;
          border-radius: 2px;
          border: 3px dashed #ccc;
          margin-right: auto;
-         margin-left: auto;         
+         margin-left: auto;
+         margin-top: 4px;
+         margin-bottom: 4px;         
      }
 
-     	#imagePreview{
-         height: 100%;
-         width: 100%;
-     	}
-
-     	#imageSelectorContainer{
-     		display: block;
-     		margin-top: 10px;
-     		margin-bottom: 10px;
+     	.imageSelectorContainer{
      		width: 420px;
      		margin-right: auto;
      		margin-left: auto;
      	}
 
-     	img {
+     	img{
      		width: 100%;
      		height : 100%;
          border-radius: 4px;
      	}
 
-     	.tagArea{
-     		padding-top: 4px;
-     		padding-bottom: 4px;
-     	}
-
-      label{
+     	label{
          -webkit-appearance: button;
          -moz-appearance: button;
          appearance: button;
@@ -48,11 +37,11 @@
          border-color: #ccc;
          padding: 4px;
          border-width: 1px; 
-         border-style: solid;
+         cursor: pointer;
       }
 
       input[type="file"]{
-         display:none;
+         display: none;
       }
 
      	input[type="submit"]{
@@ -63,10 +52,11 @@
          padding: 4px;
          border-width: 1px; 
          border-style: solid;
+         margin-left: 6px;
+         cursor: pointer;
      	}
 
       input[type="submit"]:hover, label:hover{
-         color: #333;
          background-color: #e6e6e6;
          border-color: #adadad;
       }
@@ -75,18 +65,16 @@
 
    </head>
    <body>
-     <div id="imageSelectorContainer">
+     <div class="imageSelectorContainer">
      	<form>
          <label for="imageSelector">Choose Picture</label>
      		<input id="imageSelector" type="file" />  		
-         <div id="imagePreviewSurround">
-            <div id="imagePreview">
-               <img id="imageToTag"></img>
-            </div>
+         <div class="imagePreviewSurround">
+            <img id="imageToTag"></img>            
          </div>
      		<div class="tagArea">
-   	  		<input type="text" name="tags" placeholder="Tags are separated by a space" size="40" />  		
-   	  		<input type="submit" value="Submit" />
+   	  		<input type="text" name="tags" placeholder="Tags are separated by a space" size="40" />
+   	  		<input type="submit" value="Upload Picture" />
      		</div>
       </form>
      </div>  
