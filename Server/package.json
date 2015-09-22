@@ -4,6 +4,7 @@
   "description": "Simple web server that will serve images and pages",
   "main": "ImageServer.js",
   "scripts": {
+    "prepublish": "bower && gulp",
     "start": "node imageserver",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
