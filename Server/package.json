@@ -1,0 +1,18 @@
+{
+  "name": "imageserver",
+  "version": "0.0.1",
+  "description": "Simple web server that will serve images and pages",
+  "main": "ImageServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "images",
+    "tagger"
+  ],
+  "author": "Dave Cremins",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
