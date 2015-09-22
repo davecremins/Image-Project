@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 require('./routes')(app);
 
 var port = 3001;
