@@ -19,7 +19,9 @@
   },
   "devDependencies": {
     "bower": "^1.5.2",
+    "del": "^2.0.2",
     "gulp": "^3.9.0",
-    "gulp-bower": "0.0.10"
+    "gulp-bower": "0.0.10",
+    "gulp-clean": "^0.3.1"
   }
 }
