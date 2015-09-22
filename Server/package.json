@@ -2,9 +2,9 @@
   "name": "imageserver",
   "version": "0.0.1",
   "description": "Simple web server that will serve images and pages",
-  "main": "ImageServer.js",
+  "main": "imageserver.js",
   "scripts": {
-    "prepublish": "bower && gulp",
+    "prepublish": "gulp",
     "start": "node imageserver",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

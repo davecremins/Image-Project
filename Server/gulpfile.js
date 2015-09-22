@@ -5,3 +5,5 @@ gulp.task('bower', function() {
   return bower()
     .pipe(gulp.dest('public/'));
 });
+
+gulp.task('default', ['bower']);
