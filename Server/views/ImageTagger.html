@@ -70,9 +70,9 @@
    </head>
    <body>
      <div class="imageSelectorContainer">
-     	<form>
+     	<form method="post" enctype="multipart/form-data" action="/UploadImage">
          <label for="imageSelector">
-           <input id="imageSelector" type="file" accept="image/*" required/>
+           <input id="imageSelector" name="imageSelection" type="file" accept="image/*" required/>
             <span>
                Choose Picture
             </span>

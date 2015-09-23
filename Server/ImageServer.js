@@ -1,9 +1,7 @@
-var express = require('express');
-var app = express();
-app.use(express.static(__dirname + '/dist'));
+var app = require('./configure')();
 require('./routes')(app);
 
-var port = 3001;
+var port = 4991;
 var server = app.listen(port, function () {
    console.log("Image web server running on port %s", port);
 });
