@@ -15,8 +15,8 @@
   "author": "Dave Cremins",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.14.0",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "multer": "^1.0.5"
   },
   "devDependencies": {
     "bower": "^1.5.2",

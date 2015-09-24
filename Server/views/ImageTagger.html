@@ -70,7 +70,7 @@
    </head>
    <body>
      <div class="imageSelectorContainer">
-     	<form method="post" enctype="multipart/form-data" action="/UploadImage">
+     	<form method="post" enctype="multipart/form-data" action="/upload">
          <label for="imageSelector">
            <input id="imageSelector" name="imageSelection" type="file" accept="image/*" required/>
             <span>
@@ -81,8 +81,8 @@
             <img id="imageToTag"></img>            
          </div>
      		<div class="tagArea">
-   	  		<input type="text" name="tags" placeholder="Tags are separated by a space" size="40" />
-   	  		<input type="submit" value="Upload Picture" />
+   	  		<input id="tagging" type="text" name="tags" placeholder="Tags are separated by a space" size="40" />
+   	  		<input type="submit" value="Upload" />
      		</div>
       </form>
      </div>  
