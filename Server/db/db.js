@@ -1,7 +1,9 @@
 var MongoClient = require('mongodb').MongoClient;
 
-module.exports = function(url){
+module.exports = function(url, defaultCollection){
 
+   if(typeof defaultCollection !== 'undefined')
+      url += '/' + defaultCollection;
    var MongoConnection = function(cb){
       MongoClient.connect(url, function (err, db) {
          if (err) {
@@ -24,8 +26,10 @@ module.exports = function(url){
                   console.log("Error occured inserting data into mongodb");
                   console.log(err);
                }
-               else
-                  console.log('Inserted %d documents into the %s collection.', data.length, collectionName);
+               else{
+                  console.log('Result: ');
+                  console.log(result);
+               }
 
                mongoDb.close();
             });
@@ -35,7 +39,10 @@ module.exports = function(url){
       get: function(collectionName, field, query, cb){
          MongoConnection(function(mongoDb){
             var collection = mongoDb.collection(collectionName);
-            collection.find({field: query}).toArray(function (err, result) {
+            var findCriteria = {};
+            findCriteria[field] = query;
+
+            collection.find(findCriteria).toArray(function (err, result) {
                if (err)
                   console.log(err);
                else if (result.length)

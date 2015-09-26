@@ -3,7 +3,7 @@
 var fs = require('fs');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
-var db = require('./db/db.js')('mongodb://localhost:27017/');
+var db = require('./db/db.js')('mongodb://localhost:27017/Images');
 
 module.exports = function (app) {
    app.get('/', function (req, res) {
@@ -14,14 +14,12 @@ module.exports = function (app) {
       console.log(req.file);
       console.log(req.body);
 
-      var dbObj = {
+      var imgData = {
          file: req.file,
-         tags: req.body.tags
+         tags: req.body.tags // Convert this to array later
       };
 
-      db.insert('ImageInformation', dbObj);
-      db.get('ImageInformation', 'tags', 'adah', function(results){console.log(results)});
-
+      db.insert('Metadata', imgData);
       res.status(204).end();
    })
 };
