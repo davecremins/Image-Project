@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Slide Show</title>
+      <style>
+         /* Use css file */
+         body{
+            background-color: black;  
+         }
+
+         /* responsive design using media queries */
+         .displayHolder{
+            height: 1000px;
+         }
+
+         /* responsive design using media queries */
+         .imgContainer{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1024px;
+            height: 768px;
+            box-shadow: 0 0 2.5em white;
+            margin-left: auto;
+            margin-right: auto;
+         }
+
+         img{
+            width: 100%;
+            height : 100%;
+            border-radius: 4px;
+         }
+      </style>
+   </head>
+   <body>
+   <!-- Use browserify & react -->
+   <section class='displayHolder'>
+      <section class='imgContainer'>
+         <img src='http://dummyimage.com/300/09f/fff.png'>         
+         </img>
+      </section>
+   </section>
+   </body>
+</html>

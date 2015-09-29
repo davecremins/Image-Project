@@ -7,6 +7,10 @@ var db = require('./db/db.js')('mongodb://localhost:27017/Images');
 
 module.exports = function (app) {
    app.get('/', function (req, res) {
+      res.sendFile(path.join(__dirname+'/views/ImageShow.html'));
+   });
+
+   app.get('/TagNewImage', function (req, res) {
       res.sendFile(path.join(__dirname+'/views/ImageTagger.html'));
    });
 
