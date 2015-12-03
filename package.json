@@ -1,0 +1,28 @@
+{
+  "name": "imageserver",
+  "version": "0.0.1",
+  "description": "Simple web server that will serve images and pages",
+  "main": "imageserver.js",
+  "scripts": {
+    "prepublish": "gulp",
+    "start": "node imageserver",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "images",
+    "tagger"
+  ],
+  "author": "Dave Cremins",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongodb": "^2.0.43",
+    "multer": "^1.0.5"
+  },
+  "devDependencies": {
+    "bower": "^1.5.2",
+    "gulp": "^3.9.0",
+    "gulp-bower": "0.0.10",
+    "gulp-clean": "^0.3.1"
+  }
+}
