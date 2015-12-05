@@ -18,7 +18,7 @@ module.exports = function(url, defaultCollection){
 
    return {
 
-      insert: function(collectionName, data){
+      insert: function(collectionName, data, callback){
          MongoConnection(function(mongoDb){
             var collection = mongoDb.collection(collectionName);
             collection.insert(data, function (err, result) {
@@ -27,11 +27,13 @@ module.exports = function(url, defaultCollection){
                   console.log(err);
                }
                else{
-                  console.log('Result: ');
-                  console.log(result);
+                  console.log('New object with id %s inserted into collection - %s ', result._id, collectionName);
                }
-
+               
                mongoDb.close();
+               
+               if(typeof callback === 'function')
+                  callback.apply(result);
             });
          });            
       },

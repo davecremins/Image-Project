@@ -11,7 +11,6 @@ module.exports = function (app) {
       
    db.get('Metadata', 'tags', tagQuery, function(result){
       console.log(result.length + ' previous image objects found in db');
-      // console.log(result);
       imgManager.set(result);
       console.log('image manager set - size: ' + imgManager.size()) 
    });         
@@ -24,22 +23,15 @@ module.exports = function (app) {
       res.sendFile(path.join(__dirname+'/views/ImageTagger.html'));
    });
 
-   app.get('/NextImageData', function(req, res){    
-      
-      console.log("Route: /NextImageData");
-      var obj = imgManager.next();
-      console.log(obj._id);
-      
-      res.send(obj);
+   app.get('/NextImageData', function(req, res){
+      res.send(imgManager.next());
    });
 
    app.get('/GetImage', function(req, res){
-      // console.log(imgManager.current());
       res.sendFile(path.join(__dirname + '/' + imgManager.current().file.path));
    });
 
    app.post('/setTagRotation', function (req, res) {
-      console.log(req.body);
       tagQuery = req.body.newTag;
       res.status(204).end();
    });
@@ -57,9 +49,7 @@ module.exports = function (app) {
          }
       };
 
-      db.insert('Metadata', imgData);
-      imgManager.add(imgData);
-      console.log('image manager updated - size: ' + imgManager.size());
+      db.insert('Metadata', imgData, imgManager.add);
       res.status(204).end();
    });
 };

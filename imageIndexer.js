@@ -9,6 +9,7 @@ var ImageManager = (function(){
    
    function pushToCollection(obj){
       collection.push(obj);
+      console.log('image manager updated - size: ' + this.collectionSize());
    }
    
    function next(){
