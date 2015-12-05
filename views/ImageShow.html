@@ -72,7 +72,9 @@
          };
 
          getImageData();
-
+         
+         // CSS animation timing is not synced with next image i.e. slow connection
+         // Load next image into non-DOM element and tie into animation
          setInterval(function(){
             getImageData();
          }, 15000);
