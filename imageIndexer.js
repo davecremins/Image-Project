@@ -1,4 +1,4 @@
-var ImageManager = (function(){
+var ImageIndexer = (function(){
    var collection = [];
    var pointer = 0;
    var currentObj = null;
@@ -9,7 +9,7 @@ var ImageManager = (function(){
    
    function pushToCollection(obj){
       collection.push(obj);
-      console.log('image manager updated - size: ' + this.collectionSize());
+      console.log('image indexer updated - size: ' + this.collectionSize());
    }
    
    function next(){
@@ -42,4 +42,4 @@ var ImageManager = (function(){
    };
 }());
 
-module.exports = ImageManager;
+module.exports = ImageIndexer;

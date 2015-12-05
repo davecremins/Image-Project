@@ -33,7 +33,7 @@ module.exports = function(url, defaultCollection){
                mongoDb.close();
                
                if(typeof callback === 'function')
-                  callback.apply(result);
+                  callback(result);
             });
          });            
       },

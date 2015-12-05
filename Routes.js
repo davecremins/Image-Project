@@ -4,15 +4,15 @@ var fs = require('fs');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var db = require('./db/db.js')('mongodb://localhost:27017/Images');
-var imgManager = require('./imageManager.js');
+var imgIndexer = require('./imageIndexer.js');
 
 module.exports = function (app) {
    var tagQuery = 'family';
       
    db.get('Metadata', 'tags', tagQuery, function(result){
       console.log(result.length + ' previous image objects found in db');
-      imgManager.set(result);
-      console.log('image manager set - size: ' + imgManager.size()) 
+      imgIndexer.set(result);
+      console.log('image manager set - size: ' + imgIndexer.size()) 
    });         
 
    app.get('/', function (req, res) {
@@ -24,11 +24,11 @@ module.exports = function (app) {
    });
 
    app.get('/NextImageData', function(req, res){
-      res.send(imgManager.next());
+      res.send(imgIndexer.next());
    });
 
    app.get('/GetImage', function(req, res){
-      res.sendFile(path.join(__dirname + '/' + imgManager.current().file.path));
+      res.sendFile(path.join(__dirname + '/' + imgIndexer.current().file.path));
    });
 
    app.post('/setTagRotation', function (req, res) {
@@ -49,7 +49,7 @@ module.exports = function (app) {
          }
       };
 
-      db.insert('Metadata', imgData, imgManager.add);
+      db.insert('Metadata', imgData, imgIndexer.add);
       res.status(204).end();
    });
 };
