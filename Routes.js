@@ -4,26 +4,17 @@ var fs = require('fs');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var db = require('./db/db.js')('mongodb://localhost:27017/Images');
+var imgManager = require('./imageManager.js');
 
 module.exports = function (app) {
    var tagQuery = 'family';
-   var pointerIndex = 0;
-   var imgDataMatchingQuery = [];
-   var currentImageData = null;
-   
+      
    db.get('Metadata', 'tags', tagQuery, function(result){
-      console.log(result);
-      imgDataMatchingQuery = result;
-      console.log('imgDataMatchingQuery set with results');
-   });
-
-   var GetDataForNextImage = function(){
-      if(pointerIndex === (imgDataMatchingQuery.length - 1)){
-         pointerIndex = 0;
-      }
-      currentImageData = imgDataMatchingQuery[pointerIndex++];
-      return currentImageData;
-   };
+      console.log(result.length + ' previous image objects found in db');
+      // console.log(result);
+      imgManager.set(result);
+      console.log('image manager set - size: ' + imgManager.size()) 
+   });         
 
    app.get('/', function (req, res) {
       res.sendFile(path.join(__dirname+'/views/ImageShow.html'));
@@ -34,18 +25,24 @@ module.exports = function (app) {
    });
 
    app.get('/NextImageData', function(req, res){    
-      res.send(GetDataForNextImage());
+      
+      console.log("Route: /NextImageData");
+      var obj = imgManager.next();
+      console.log(obj._id);
+      
+      res.send(obj);
    });
 
    app.get('/GetImage', function(req, res){
-      res.sendFile(path.join(__dirname + '/' + currentImageData.file.path));
+      // console.log(imgManager.current());
+      res.sendFile(path.join(__dirname + '/' + imgManager.current().file.path));
    });
 
    app.post('/setTagRotation', function (req, res) {
       console.log(req.body);
       tagQuery = req.body.newTag;
       res.status(204).end();
-   })
+   });
 
    app.post('/upload', upload.single('imageSelection'), function (req, res) {
       console.log(req.file);
@@ -61,6 +58,8 @@ module.exports = function (app) {
       };
 
       db.insert('Metadata', imgData);
+      imgManager.add(imgData);
+      console.log('image manager updated - size: ' + imgManager.size());
       res.status(204).end();
-   })
+   });
 };
