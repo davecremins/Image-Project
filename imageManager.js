@@ -8,23 +8,15 @@ var ImageManager = (function(){
    }
    
    function pushToCollection(obj){
-      console.log('Previous length of collection ' + collection.length);
-      
       collection.push(obj);
-      
-      console.log('New length of collection ' + collection.length);
    }
    
    function next(){
       if(collection.length === 0){
-         console.log('collection length 0 so resetting pointer');
          pointer = 0;
       }
       
       if(pointer > (collection.length - 1)){
-         console.log('pointer is ' + pointer);
-         console.log('collection length - 1 is ' + (collection.length - 1));
-         console.log('resetting pointer');
          pointer = 0;
       }
       
@@ -33,7 +25,7 @@ var ImageManager = (function(){
    }
    
    function peek(){
-      return currentObj;      
+      return currentObj;
    }
    
    function collectionSize(){
