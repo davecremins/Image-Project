@@ -32,6 +32,8 @@ module.exports = function(url, defaultCollection){
                
                mongoDb.close();
                
+               console.log(callback);
+               
                if(typeof callback === 'function')
                   callback(result);
             });

@@ -49,7 +49,11 @@ module.exports = function (app) {
          }
       };
 
-      db.insert('Metadata', imgData, imgIndexer.add);
+      var addToIndexer = function(){
+        imgIndexer.add(this); 
+      };
+      
+      db.insert('Metadata', imgData, addToIndexer);
       res.status(204).end();
    });
 };

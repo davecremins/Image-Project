@@ -9,7 +9,7 @@ var ImageIndexer = (function(){
    
    function pushToCollection(obj){
       collection.push(obj);
-      console.log('image indexer updated - size: ' + this.collectionSize());
+      console.log('image indexer updated - size: ' + collectionSize());
    }
    
    function next(){
