@@ -1,6 +1,12 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower');
 var clean = require('gulp-clean');
+
+gulp.task('test', function () {
+   var mocha = require('gulp-mocha');
+	return gulp.src('test/**/*.js', { read: false })
+		.pipe(mocha({ reporter: 'spec' }));
+});
  
 gulp.task('bower', function() {
   return bower()
