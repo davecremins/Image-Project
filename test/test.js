@@ -37,7 +37,6 @@ describe('collection modifications', function () {
 
    it('add should return correct updated size', function () {
       imageIndexer.add({ id: 78, name: 'ann' });
-      assert.equal(imageIndexer.size(), 3);
       imageIndexer.add({ id: 79, name: 'jim' });
       assert.equal(imageIndexer.size(), 4);
    });
