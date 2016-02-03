@@ -1,12 +1,12 @@
 /* globals describe, it, beforeEach, imageIndexer */
 var assert = require('assert');
+var executor = require('./functionHelper');
 var imageIndexer = require('../lib/imageIndexer');
 
 describe('Image Indexer', function () {
    describe('current is null', function () {
       it('should return null when imageIndexer is required', function () {
          assert.equal(imageIndexer.current(), null);
-         console.log('test 1 size is ' + imageIndexer.size());
       });
    });
 
@@ -15,18 +15,15 @@ describe('Image Indexer', function () {
          var data = [{ id: 1, name: 'bob' }, { id: 4, name: 'ray' }];
          imageIndexer.set(data);
          assert.equal(imageIndexer.size(), data.length);
-         console.log('test 2 size is ' + imageIndexer.size());
       });
    });
 });
 
-describe('collection modifications', function () {
-   
+describe('collection modifications', function () {   
    var data = [{ id: 1, name: 'bob' }, { id: 4, name: 'ray' }];
    
    beforeEach(function () {
          imageIndexer.set(data);
-         console.log('beforeEach');
       }
    );
 
@@ -43,24 +40,20 @@ describe('collection modifications', function () {
       assert.equal(imageIndexer.size(), 3);
       imageIndexer.add({ id: 79, name: 'jim' });
       assert.equal(imageIndexer.size(), 4);
-      console.log('test 3 size is ' + imageIndexer.size());
    });
 });
-
 
 describe('collection modifications', function () {
    var data = [{ id: 1, name: 'bob' }, { id: 4, name: 'ray' }];
    
    beforeEach(function () {
          imageIndexer.set(data);
-         console.log('beforeEach');
       }
    );
    
    it('add and next followed by another next should return correct object', function () {
       imageIndexer.add({ id: 82, name: 'ann' });
-      imageIndexer.next();
-      imageIndexer.next();
+      executor.exec(imageIndexer.next, 2);
 
       var obj = imageIndexer.current();
       assert(obj != null);
@@ -73,15 +66,12 @@ describe('collection loop back', function () {
    
    beforeEach(function () {
          imageIndexer.set(data);
-         console.log('beforeEach');
       }
    );
    
    it('next will loop back to beginning', function () {
       imageIndexer.add({ id: 100, name: 'barry' });
-      imageIndexer.next();
-      imageIndexer.next();
-      imageIndexer.next();
+      executor.exec(imageIndexer.next, 3);
 
       var obj = imageIndexer.current();
       assert(obj != null);
