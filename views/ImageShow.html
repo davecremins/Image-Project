@@ -30,13 +30,33 @@
             height : 100%;
             border-radius: 4px;
          }
+         
+         .fadeInOut {
+            animation: fade 10s infinite;
+            /*animation-fill-mode: forwards;*/
+         }
+         
+         @keyframes fade {
+            0% {
+               opacity: 0;
+            }
+            5% {
+               opacity: 1
+            }
+            90% {
+               opacity: 1
+            }
+            100% {
+               opacity: 0;
+            }
+         }
       </style>
    </head>
    <body>
       <!-- Use browserify & react -->
       <section class='displayHolder'>
          <section class='imgContainer'>
-            <img>         
+            <img class='fadeInOut'>         
             </img>
          </section>
       </section>
@@ -44,20 +64,20 @@
       <script type="text/javascript">
          var getImageData = function(){
             $.get('/NextImageData', {}, function(data){
-               console.log(data);
                var $img = $('img');
                $img.attr('src', '');
                var randomImageRoute = '/GetImage?' + new Date().getTime();
-               console.log(randomImageRoute);               
                $img.attr('src', randomImageRoute);
             });
          };
 
          getImageData();
-
+         
+         // CSS animation timing is not synced with next image i.e. slow connection
+         // Load next image into non-DOM element and tie into animation
          setInterval(function(){
             getImageData();
-         }, 5000);
+         }, 10000);
 
       </script>
    </body>

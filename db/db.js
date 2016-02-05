@@ -27,15 +27,16 @@ module.exports = function(url, defaultCollection){
                   console.log(err);
                }
                else{
-                  console.log('New object with id %s inserted into collection - %s ', result._id, collectionName);
+                  console.log('New object inserted into collection');
                }
                
                mongoDb.close();
                
-               console.log(callback);
-               
-               if(typeof callback === 'function')
-                  callback(result);
+               if(typeof callback === 'function'){
+                  // WIP: Issue here as result is not the same type of object/entity
+                  // as objects returned in the initial load/get
+                  callback.bind(result)();
+               }
             });
          });            
       },

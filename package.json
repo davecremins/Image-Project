@@ -4,9 +4,9 @@
   "description": "Simple web server that will serve images and pages",
   "main": "imageserver.js",
   "scripts": {
-    "prepublish": "gulp",
+    "postinstall": "gulp",
     "start": "node imageserver",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/"
   },
   "keywords": [
     "images",
@@ -23,6 +23,8 @@
     "bower": "^1.5.2",
     "gulp": "^3.9.0",
     "gulp-bower": "0.0.10",
-    "gulp-clean": "^0.3.1"
+    "gulp-clean": "^0.3.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha-lcov-reporter": "^1.0.0"
   }
 }

@@ -1,10 +1,10 @@
-// globals require
+/* globals require, __dirname */
 var path = require('path');
 var fs = require('fs');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var db = require('./db/db.js')('mongodb://localhost:27017/Images');
-var imgIndexer = require('./imageIndexer.js');
+var imgIndexer = require('./lib/imageIndexer.js');
 
 module.exports = function (app) {
    var tagQuery = 'family';
@@ -50,7 +50,7 @@ module.exports = function (app) {
       };
 
       var addToIndexer = function(){
-        imgIndexer.add(this); 
+        imgIndexer.add(imgData); 
       };
       
       db.insert('Metadata', imgData, addToIndexer);
