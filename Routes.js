@@ -50,7 +50,7 @@ module.exports = function (app) {
       };
 
       var addToIndexer = function(){
-        imgIndexer.add(this); 
+        imgIndexer.add(imgData); 
       };
       
       db.insert('Metadata', imgData, addToIndexer);

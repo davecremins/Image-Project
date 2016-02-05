@@ -35,8 +35,7 @@ module.exports = function(url, defaultCollection){
                if(typeof callback === 'function'){
                   // WIP: Issue here as result is not the same type of object/entity
                   // as objects returned in the initial load/get
-                  var returnResult = callback.bind(result);
-                  returnResult();
+                  callback.bind(result)();
                }
             });
          });            
