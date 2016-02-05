@@ -1,5 +1,20 @@
 # Image Tagger
-Select local image, preview & tag it
+Select local image, preview it, tag it and post it for rotation
 
-## Next
-Setup simple NodeJS webserver that accepts image & tags and stores them in MongoDB  
+## To Run
+Install [MongoDb](https://www.mongodb.org/downloads#production) (I've set MongoDB to run as a service)
+'npm install'
+'npm start'
+
+## To Tag
+Browse to http://localhost:4991/tagnewimage
+
+## Rotation
+Browse to http://localhost:4991
+
+## TODO
+Use Socket.io to push rotation to client
+Decouple image display from acquisition of image data
+Use React components for UI
+Use a cool modern image presentation loop
+Allow the rotation to change based on new tag
