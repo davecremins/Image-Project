@@ -3,14 +3,14 @@ Select local image, preview it, tag it and post it for rotation
 
 ## To Run
 Install [MongoDb](https://www.mongodb.org/downloads#production) (I've set MongoDB to run as a service)
-'''npm install'''
-'''npm start'''
+```npm install```
+```npm start```
 
 ## To Tag
-'''Browse to http://localhost:4991/tagnewimage'''
+```Browse to http://localhost:4991/tagnewimage```
 
 ## Rotation
-'''Browse to http://localhost:4991'''
+```Browse to http://localhost:4991```
 
 ## TODO
 - Use Socket.io to push rotation to client
