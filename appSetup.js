@@ -6,7 +6,7 @@ var upload = multer({ dest: 'uploads/' });
 var db = require('./db/db.js')('mongodb://localhost:27017/Images');
 var imgIndexer = require('./lib/imageIndexer.js');
 
-module.exports = function (app) {
+module.exports = function (app, io) {
    var tagQuery = 'family';
       
    db.get('Metadata', 'tags', tagQuery, function(result){

@@ -60,8 +60,14 @@
             </img>
          </section>
       </section>
+      <script src="/socket.io/socket.io.js"></script>
       <script src="public/jquery/dist/jquery.min.js"></script>
       <script type="text/javascript">
+         var socket = io.connect('/');
+         socket.on('nextImage', function(data){
+            console.log(data);
+         });
+         
          var getImageData = function(){
             $.get('/NextImageData', {}, function(data){
                var $img = $('img');
