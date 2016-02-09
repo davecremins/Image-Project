@@ -1,12 +1,10 @@
 /* globals require, __dirname */
 var path = require('path');
-var fs = require('fs');
-var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
 var db = require('./db/db.js')('mongodb://localhost:27017/Images');
 var imgIndexer = require('./lib/imageIndexer.js');
 
 module.exports = function (app, io) {
+   var uploadInfo = { dest: 'uploads/' }; 
    var tagQuery = 'family';
    
    // Every client that connects should be fed the same data
@@ -16,7 +14,7 @@ module.exports = function (app, io) {
    db.get('Metadata', 'tags', tagQuery, function(result){
       console.log(result.length + ' previous image objects found in db');
       imgIndexer.set(result);
-      console.log('image manager set - size: ' + imgIndexer.size()) 
+      console.log('image indexer set - size: ' + imgIndexer.size()) 
    });
 
    app.get('/', function (req, res) {
@@ -32,7 +30,7 @@ module.exports = function (app, io) {
    });
 
    app.get('/GetImage', function(req, res){
-      res.sendFile(path.join(__dirname + '/' + imgIndexer.current().file.path));
+      res.sendFile(path.join(__dirname + '/' + uploadInfo.dest + req.query.filename));
    });
 
    app.post('/setTagRotation', function (req, res) {
@@ -40,6 +38,7 @@ module.exports = function (app, io) {
       res.status(204).end();
    });
 
+   var upload = require('multer')(uploadInfo);
    app.post('/upload', upload.single('imageSelection'), function (req, res) {
       console.log(req.file);
       console.log(req.body);
@@ -64,4 +63,6 @@ module.exports = function (app, io) {
    io.on('connection', function (socket) {
       io.emit('nextImage', imgIndexer.current());
    });
+   
+   require('./lib/imageScheduler.js')(io, imgIndexer, 10000).Schedule();
 };

@@ -67,25 +67,15 @@
          socket.on('nextImage', function(data){
             console.log('Received socket data');
             console.log(data);
+            setImage(data);
          });
          
-         var getImageData = function(){
-            $.get('/NextImageData', {}, function(data){
-               var $img = $('img');
-               $img.attr('src', '');
-               var randomImageRoute = '/GetImage?' + new Date().getTime();
-               $img.attr('src', randomImageRoute);
-            });
+         var setImage = function(data){
+            var $img = $('img');
+            $img.attr('src', '');
+            var randomImageRoute = '/GetImage?filename=' + data.file.filename;
+            $img.attr('src', randomImageRoute);
          };
-
-         getImageData();
-         
-         // CSS animation timing is not synced with next image i.e. slow connection
-         // Load next image into non-DOM element and tie into animation
-         setInterval(function(){
-            getImageData();
-         }, 10000);
-
       </script>
    </body>
 </html>
