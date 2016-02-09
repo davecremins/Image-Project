@@ -65,6 +65,7 @@
       <script type="text/javascript">
          var socket = io.connect('/');
          socket.on('nextImage', function(data){
+            console.log('Received socket data');
             console.log(data);
          });
          

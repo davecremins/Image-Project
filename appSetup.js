@@ -8,12 +8,16 @@ var imgIndexer = require('./lib/imageIndexer.js');
 
 module.exports = function (app, io) {
    var tagQuery = 'family';
-      
+   
+   // Every client that connects should be fed the same data
+   // They should get the current image and slot into the 
+   // schedulers rotation => Need to handle a new connection and
+   // the scheduled emit
    db.get('Metadata', 'tags', tagQuery, function(result){
       console.log(result.length + ' previous image objects found in db');
       imgIndexer.set(result);
       console.log('image manager set - size: ' + imgIndexer.size()) 
-   });         
+   });
 
    app.get('/', function (req, res) {
       res.sendFile(path.join(__dirname+'/views/ImageShow.html'));
@@ -55,5 +59,9 @@ module.exports = function (app, io) {
       
       db.insert('Metadata', imgData, addToIndexer);
       res.status(204).end();
+   });
+   
+   io.on('connection', function (socket) {
+      io.emit('nextImage', imgIndexer.current());
    });
 };
