@@ -60,25 +60,22 @@
             </img>
          </section>
       </section>
+      <script src="/socket.io/socket.io.js"></script>
       <script src="public/jquery/dist/jquery.min.js"></script>
       <script type="text/javascript">
-         var getImageData = function(){
-            $.get('/NextImageData', {}, function(data){
-               var $img = $('img');
-               $img.attr('src', '');
-               var randomImageRoute = '/GetImage?' + new Date().getTime();
-               $img.attr('src', randomImageRoute);
-            });
-         };
-
-         getImageData();
+         var socket = io.connect('/');
+         socket.on('nextImage', function(data){
+            console.log('Received socket data');
+            console.log(data);
+            setImage(data);
+         });
          
-         // CSS animation timing is not synced with next image i.e. slow connection
-         // Load next image into non-DOM element and tie into animation
-         setInterval(function(){
-            getImageData();
-         }, 10000);
-
+         var setImage = function(data){
+            var $img = $('img');
+            $img.attr('src', '');
+            var randomImageRoute = '/GetImage?filename=' + data.file.filename;
+            $img.attr('src', randomImageRoute);
+         };
       </script>
    </body>
 </html>

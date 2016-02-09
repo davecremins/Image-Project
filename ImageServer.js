@@ -1,7 +1,9 @@
 var app = require('./configure')();
-require('./routes')(app);
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+require('./appSetup')(app, io);
 
 var port = 4991;
-var server = app.listen(port, function () {
+server.listen(port, function () {
    console.log("Image web server running on port %s", port);
 });
